@@ -37,7 +37,7 @@ void *calloc(size_t nmemb, size_t size)
 
 	//  Set all the bytes to 0
 	for (size_t i = 0; i < nmemb * size; i++) {
-		((char *)new_elem)[i] = 0; 
+		((char *)new_elem)[i] = 0;
 	}
 
 	return new_elem;

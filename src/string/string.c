@@ -56,6 +56,8 @@ char *strncat(char *destination, const char *source, size_t len)
 	for(; i < len; i++) {
 		dest_copy[i] = '\0';
 	}
+	dest_copy[i] = '\0';
+	
 	return destination;
 }
 
@@ -130,7 +132,7 @@ char *strrchr(const char *str, int c)
 {
 	/* TODO: Implement strrchr(). */
 	int length = strlen(str);
-	
+
 	//  Starting from the end of the string.
 	str += length;
 	for (; length > 0; length--, str--) {
