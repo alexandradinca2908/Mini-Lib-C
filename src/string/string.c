@@ -198,8 +198,8 @@ void *memmove(void *destination, const void *source, size_t num)
 	const char *source_cast = (const char*)source;
 
 	//  First we tranfer data to a buffer
-	const size_t buffer_size = num + 1;
-	char buffer[buffer_size];
+	const size_t kBuffer_size = num + 1;
+	char buffer[kBuffer_size];
 
 	size_t i = 0;
 	for (; i < num; i++) {

@@ -1,7 +1,7 @@
 #include <internal/syscall.h>
 #include <errno.h>
-#include "time.h"
 #include <stddef.h>
+#include "time.h"
 
 unsigned int sleep(unsigned int seconds)
 {
