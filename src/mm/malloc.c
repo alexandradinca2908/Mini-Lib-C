@@ -11,14 +11,23 @@
 void *malloc(size_t size)
 {
 	/* TODO: Implement malloc(). */
-	int ret = mem_list_add(mem_list_head.next, size);
+
+	//  Allocating memory for the new element
+	void *new_elem = mmap(NULL, sizeof(struct mem_list), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+
+	if (new_elem == MAP_FAILED) {
+		return NULL;
+	}
+
+	//  Adding the element to the heap list
+	int ret = mem_list_add(new_elem, size);
 
 	if (ret < 0) {
 		errno = -ret;
 		return NULL;
 	}
 
-	return &mem_list_head;
+	return new_elem;
 }
 
 void *calloc(size_t nmemb, size_t size)
