@@ -32,7 +32,7 @@ char *strncpy(char *destination, const char *source, size_t len)
 char *strcat(char *destination, const char *source)
 {
 	/* TODO: Implement strcat(). */
-	//  Starting from the end of the string
+	//  Starting from the end of the string.
 	char *dest_copy = destination + strlen(destination);
 	int i = 0;
 	for (; source[i] != '\0'; i++) {
@@ -45,21 +45,25 @@ char *strcat(char *destination, const char *source)
 char *strncat(char *destination, const char *source, size_t len)
 {
 	/* TODO: Implement strncat(). */
+	//  Starting from the end of the string.
 	char *dest_copy = destination + strlen(destination);
 	size_t i = 0;
 	for (; i < len && source[i] != '\0'; i++) {
 		dest_copy[i] = source[i];
 	}
+
+	//  Padding the rest of the length.
 	for(; i < len; i++) {
 		dest_copy[i] = '\0';
 	}
-	dest_copy[i] = '\0';
 	return destination;
 }
 
 int strcmp(const char *str1, const char *str2)
 {
 	/* TODO: Implement strcmp(). */
+
+	//  Compare each byte. Stop if a difference is found.
 	for (; *str1 != '\0' && *str2 != '\0'; str1++, str2++) {
 		if (*str1 > *str2) {
 			return 1;
@@ -67,6 +71,7 @@ int strcmp(const char *str1, const char *str2)
 			return -1;
 		}
 	}
+	//  If the strings have different sizes, the longer one is considered greater.
 	if (*str1 > *str2) {
 		return 1;
 	} else if (*str1 < *str2) {
@@ -78,6 +83,8 @@ int strcmp(const char *str1, const char *str2)
 int strncmp(const char *str1, const char *str2, size_t len)
 {
 	/* TODO: Implement strncmp(). */
+
+	//  Compare each byte. Stop if a difference is found or NULL is found.
 	for (; *str1 != '\0' && *str2 != '\0' && len > 0; str1++, str2++, len--) {
 		if (*str1 > *str2) {
 			return 1;
@@ -86,6 +93,7 @@ int strncmp(const char *str1, const char *str2, size_t len)
 		}
 	}
 
+	//  If length is not 0, the longer array is considered greater.
 	if (len > 0) {
 		if (*str1 > *str2) {
 			return 1;
@@ -122,6 +130,8 @@ char *strrchr(const char *str, int c)
 {
 	/* TODO: Implement strrchr(). */
 	int length = strlen(str);
+	
+	//  Starting from the end of the string.
 	str += length;
 	for (; length > 0; length--, str--) {
 		if (*str == c) {
@@ -135,6 +145,8 @@ char *strstr(const char *haystack, const char *needle)
 {
 	/* TODO: Implement strstr(). */
 	size_t needle_length = strlen(needle);
+
+	//  Using strcmp to compare every substring.
 	for (; strlen(haystack) >= needle_length; haystack++) {
 		if (strncmp(haystack, needle, needle_length) == 0) {
 			return (char *)haystack;

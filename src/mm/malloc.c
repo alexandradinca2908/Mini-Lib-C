@@ -33,14 +33,14 @@ void *malloc(size_t size)
 void *calloc(size_t nmemb, size_t size)
 {
 	/* TODO: Implement calloc(). */
-	size_t calculatedSize = nmemb * size;
-	int ret = mem_list_add(mem_list_head.next, calculatedSize);
+	void *new_elem = malloc(nmemb * size);
 
-	if (ret < 0) {
-		return NULL;
+	//  Set all the bytes to 0
+	for (size_t i = 0; i < nmemb * size; i++) {
+		((char *)new_elem)[i] = 0; 
 	}
 
-	return &mem_list_head;
+	return new_elem;
 }
 
 void free(void *ptr)
